@@ -12,7 +12,6 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                git url: 'ssh://git@github.com/UptycsSC/testrepo'
                 echo 'BUILD image STARTED'
                 sh 'docker build -name test:${BUILD_ID} . '
             }
