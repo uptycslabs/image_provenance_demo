@@ -13,7 +13,7 @@ pipeline {
         stage("build") {
             steps {
                 echo 'BUILD image STARTED'
-                sh 'docker build -name test:${BUILD_ID} . '
+                sh 'docker build --name test:${BUILD_ID} . '
             }
         }
     }
