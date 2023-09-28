@@ -23,7 +23,7 @@ pipeline {
                             string(credentialsId: 'UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = 'uptycs/uptycs-ci:latest'             
+                        def scannerImage = 'uptycs/uptycs-ci:latest-aarch64'             
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
