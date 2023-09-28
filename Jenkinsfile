@@ -17,6 +17,7 @@ pipeline {
                 sh 'docker build --tag test:${BUILD_ID} . '
             
                 script {
+		    sh (script: "set")
                     withCredentials([
                             string(credentialsId: 'UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
                             string(credentialsId: 'UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
@@ -42,7 +43,6 @@ pipeline {
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                         ].join(' ')
                         sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
-			sh (script: "set")
                     } //script
                 } // withCredentials
             } //steps
