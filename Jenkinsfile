@@ -27,8 +27,8 @@ pipeline {
                     '--rm', '--restart no',
                     "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
                     '--volume /var/run/docker.sock:/var/run/docker.sock:ro',
-                    '--volume /Users/usirsiwal/work/uptycs/testrepo/uptycs:/opt/uptycs/cloud'
-                    '--env JOB_NAME="${JOB_NAME}"',
+                    '--volume /Users/usirsiwal/work/uptycs/testrepo/uptycs:/opt/uptycs/cloud',
+                    '--env JOB_NAME="${JOB_NAME}"'
                     ].join(' ')
                     // scanner options 
                     def scanArgs = [
