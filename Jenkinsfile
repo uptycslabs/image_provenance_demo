@@ -22,6 +22,7 @@ pipeline {
                             string(credentialsId: 'UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
                             string(credentialsId: 'UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
                             string(credentialsId: 'UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
+                            string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN'),
                         ]) {
                         // uptycs scanner and its parameters
                         def scannerImage = 'uptycs/uptycs-ci:latest-aarch64'             
@@ -41,6 +42,7 @@ pipeline {
                             "--ci-runner-type jenkins",
                             '--api-key ${UPTYCS_API_KEY}',
                             '--api-secret ${UPTYCS_API_SECRET}',
+                            '--github-token ${GITHUB_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                         ].join(' ')
                         sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
