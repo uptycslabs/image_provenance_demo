@@ -18,6 +18,8 @@ pipeline {
             
                 script {
 		    sh (script: "set")
+		    sh (script: "set > uptycs-env.txt")
+                    sh (script: "cat uptycs-env.txt")
                     withCredentials([
                             string(credentialsId: 'UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
                             string(credentialsId: 'UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
@@ -36,6 +38,7 @@ pipeline {
                         def scanArgs = [
                             "scan",
 			    "--github-checks",
+			    "--env-file uptycs-env.txt",
                             "--image-id 'test:${BUILD_ID}'",
                             "--ci-runner-type jenkins",
                             '--api-key ${UPTYCS_API_KEY}',
