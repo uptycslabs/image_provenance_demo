@@ -36,8 +36,6 @@ pipeline {
                             "scan",
                             "--image-id 'test:${BUILD_ID}'",
                             "--ci-runner-type jenkins",
-                            "--api-key '${UPTYCS_API_KEY}'",
-                            "--api-secret '${UPTYCS_API_SECRET}'",
                             "--uptycs-secret '${UPTYCS_CI_SECRET}'",
                         ].join(' ')
                         sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
@@ -47,3 +45,7 @@ pipeline {
         } //stage
     } //stages
 } // pipeline
+
+
+ //                           "--api-key '${UPTYCS_API_KEY}'",
+ //                           "--api-secret '${UPTYCS_API_SECRET}'",
