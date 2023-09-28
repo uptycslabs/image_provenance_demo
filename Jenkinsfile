@@ -41,7 +41,7 @@ pipeline {
                     ].join(' ')
                      sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
                 } // withCredentials
-            }
-        
-    }
-}
+            } //steps
+        } //stage
+    } //stages
+} // pipeline
