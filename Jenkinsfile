@@ -29,6 +29,7 @@ pipeline {
                         def scannerImage = 'uptycs/uptycs-ci:latest-aarch64'             
                         def scannerImageOpts = [
                         '--rm', '--restart no',
+			"--env-file uptycs-env.txt",
                         "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
                         '--volume /var/run/docker.sock:/var/run/docker.sock:ro',
                         '--volume /Users/usirsiwal/work/uptycs/testrepo/uptycs:/opt/uptycs/cloud',
@@ -38,7 +39,6 @@ pipeline {
                         def scanArgs = [
                             "scan",
 			    "--github-checks",
-			    "--env-file uptycs-env.txt",
                             "--image-id 'test:${BUILD_ID}'",
                             "--ci-runner-type jenkins",
                             '--api-key ${UPTYCS_API_KEY}',
