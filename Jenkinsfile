@@ -17,9 +17,7 @@ pipeline {
                 sh 'docker build --tag test:${BUILD_ID} . '
             
                 script {
-		    sh (script: "set")
 		    sh (script: "set > uptycs-env.txt")
-                    sh (script: "cat uptycs-env.txt")
                     withCredentials([
                             string(credentialsId: 'UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
                             string(credentialsId: 'UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
