@@ -39,9 +39,8 @@ pipeline {
                             "--api-key '${UPTYCS_API_KEY}'",
                             "--api-secret '${UPTYCS_API_SECRET}'",
                             "--uptycs-secret '${UPTYCS_CI_SECRET}'",
-			    "--github-checks",
                         ].join(' ')
-                        sh (script: 'docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}')
+                        sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
                     } //script
                 } // withCredentials
             } //steps
