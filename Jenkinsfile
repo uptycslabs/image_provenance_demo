@@ -34,6 +34,7 @@ pipeline {
                         // scanner options 
                         def scanArgs = [
                             "scan",
+			    "--github-checks",
                             "--image-id 'test:${BUILD_ID}'",
                             "--ci-runner-type jenkins",
                             "--api-key '${UPTYCS_API_KEY}'",
