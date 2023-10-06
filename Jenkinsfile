@@ -48,7 +48,7 @@ pipeline {
                             '--api-key ${UPTYCS_API_KEY}',
                             '--api-secret ${UPTYCS_API_SECRET}',
                             '--github-token ${GITHUB_TOKEN}',
-			    '--jenkins-token ${JENKINS_TOKEN}'
+			    '--jenkins-token ${JENKINS_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}'
                         ].join(' ')
                         sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
