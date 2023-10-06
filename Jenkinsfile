@@ -23,6 +23,8 @@ pipeline {
                             string(credentialsId: 'UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
                             string(credentialsId: 'UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
                             string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN'),
+                            string(credentialsId: 'JENKINS_TOKEN', variable: 'JENKINS_TOKEN'),
+
                         ]) {
                         // uptycs scanner and its parameters
                         def scannerImage = 'uptycs/uptycs-ci:latest-aarch64'             
@@ -37,7 +39,9 @@ pipeline {
                         // scanner options 
                         def scanArgs = [
                             "scan",
-			    "--github-checks",
+			                "--github-checks",
+                            "--jenkins-checks",
+                            '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
                             "--ci-runner-type jenkins",
                             '--api-key ${UPTYCS_API_KEY}',
