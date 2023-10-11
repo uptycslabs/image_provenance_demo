@@ -40,7 +40,7 @@ pipeline {
                         // scanner options 
                         def scanArgs = [
                             "scan",
-			                "--github-checks",
+			    "--github-checks",
                             "--jenkins-checks",
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
@@ -49,7 +49,8 @@ pipeline {
                             '--api-secret ${UPTYCS_API_SECRET}',
                             '--github-token ${GITHUB_TOKEN}',
 			    '--jenkins-token ${JENKINS_TOKEN}',
-                            '--uptycs-secret ${UPTYCS_CI_SECRET}'
+                            '--uptycs-secret ${UPTYCS_CI_SECRET}',
+                            '--approved-email-domain uptycs.com'
                         ].join(' ')
                         sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
                     } //script
