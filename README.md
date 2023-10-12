@@ -1,10 +1,9 @@
 # testrepo
-This is test repo.
 
-And more tests
+Test commit #1
 
+Test commit #2
 
-now testing signed commit.
 
 
 
