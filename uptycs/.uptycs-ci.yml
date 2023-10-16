@@ -1,8 +1,8 @@
 # General Configuration Options
 ci_runner: jenkins
-hostname: devk8con.uptycs.dev
+hostname: app.uptycs.io
 verbose: false
-customer_id: 1e9800d9-479b-4345-99bb-b177d22362dc
+customer_id: 11111111-1111-1111-1111-111111111111
 
 # Configure vulnerability scanning.
 vulnerabilities:
