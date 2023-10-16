@@ -44,6 +44,7 @@ pipeline {
                             "--jenkins-checks",
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
+                            "--insecure",
                             "--ci-runner-type jenkins",
                             '--api-key ${UPTYCS_API_KEY}',
                             '--api-secret ${UPTYCS_API_SECRET}',
