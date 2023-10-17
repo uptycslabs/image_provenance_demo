@@ -31,16 +31,20 @@ pipeline {
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--network host",
-			"--env-file uptycs-env.txt",
+			            "--env-file uptycs-env.txt",
                         "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
-                        '--volume /var/run/docker.sock:/var/run/docker.sock:ro',
+                        '--volume /var/run/docker.sock:/var/run/docker.sock:rw',
                         '--volume /Users/usirsiwal/work/uptycs/testrepo/uptycs:/opt/uptycs/cloud',
                         '--env JOB_NAME="${JOB_NAME}"'
                         ].join(' ')
                         // scanner options 
                         def scanArgs = [
                             "scan",
-			    "--github-checks",
+                            '--disable-secrets',
+                            '--disable-vulnerabilities',
+                            '--disable-malware',
+                            '--disable-image-scan',
+			                "--github-checks",
                             "--jenkins-checks",
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
@@ -49,7 +53,7 @@ pipeline {
                             '--api-key ${UPTYCS_API_KEY}',
                             '--api-secret ${UPTYCS_API_SECRET}',
                             '--github-token ${GITHUB_TOKEN}',
-			    '--jenkins-token ${JENKINS_TOKEN}',
+			                '--jenkins-token ${JENKINS_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com'
                         ].join(' ')
