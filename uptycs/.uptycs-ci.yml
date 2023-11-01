@@ -2,7 +2,7 @@
 ci_runner: jenkins
 hostname: supplychaindev.uptycs.dev
 verbose: false
-customer_id: 11111111-1111-1111-1111-111111111111
+customer_id: 2053a0b2-84cc-42c2-8ae6-62c1a8b5915c
 
 # Configure vulnerability scanning.
 vulnerabilities:
