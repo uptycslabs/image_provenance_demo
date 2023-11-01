@@ -44,7 +44,7 @@ pipeline {
                             '--disable-vulnerabilities',
                             '--disable-malware',
                             '--disable-image-scan',
-			                "--github-checks",
+			    "--github-checks",
                             "--jenkins-checks",
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
@@ -53,7 +53,7 @@ pipeline {
                             '--api-key ${UPTYCS_API_KEY}',
                             '--api-secret ${UPTYCS_API_SECRET}',
                             '--github-token ${GITHUB_TOKEN}',
-			                '--jenkins-token ${JENKINS_TOKEN}',
+			    '--jenkins-token ${JENKINS_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com'
                         ].join(' ')
