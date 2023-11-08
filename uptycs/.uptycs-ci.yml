@@ -1,8 +1,8 @@
 # General Configuration Options
 ci_runner: jenkins
-hostname: supplychaindev.uptycs.dev
+hostname: scdev.uptycs.dev
 verbose: false
-customer_id: 2053a0b2-84cc-42c2-8ae6-62c1a8b5915c
+customer_id: 9c30b0cd-ae68-48ab-a122-b1678e5dd5cb
 
 # Configure vulnerability scanning.
 vulnerabilities:
