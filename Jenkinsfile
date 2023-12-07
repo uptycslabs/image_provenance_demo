@@ -27,7 +27,7 @@ pipeline {
 
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = 'uptycs/uptycs-ci:latest-aarch64'             
+                        def scannerImage = 'uptycs/uptycs-ci:latest'             
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--network host",
