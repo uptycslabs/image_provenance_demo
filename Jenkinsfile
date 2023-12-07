@@ -27,11 +27,11 @@ pipeline {
 
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = 'uptycs/uptycs-ci:latest'             
+                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:66d564c51c1bea6f9e5f81d6e6a6de022b8e5eca'             
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--network host",
-			            "--env-file uptycs-env.txt",
+			"--env-file uptycs-env.txt",
                         "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
                         '--volume /var/run/docker.sock:/var/run/docker.sock:rw',
                         '--volume /Users/usirsiwal/work/uptycs/testrepo/uptycs:/opt/uptycs/cloud',
