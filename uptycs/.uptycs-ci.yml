@@ -1,8 +1,8 @@
 # General Configuration Options
 ci_runner: jenkins
-hostname: scdev.uptycs.dev
+hostname: alphacentauri.uptycs.net
 verbose: false
-customer_id: 9c30b0cd-ae68-48ab-a122-b1678e5dd5cb
+customer_id: eb00fc3a-4533-478f-9462-13528f2e2574
 
 # Configure vulnerability scanning.
 vulnerabilities:
