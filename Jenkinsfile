@@ -27,7 +27,8 @@ pipeline {
 
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:66d564c51c1bea6f9e5f81d6e6a6de022b8e5eca'             
+                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:66d564c51c1bea6f9e5f81d6e6a6de022b8e5eca'   
+			
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--network host",
@@ -57,7 +58,9 @@ pipeline {
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com'
                         ].join(' ')
-                        sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
+			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
+                        	sh (script: "docker run ${scannerImageOpts} uptycs-ci:66d564c51c1bea6f9e5f81d6e6a6de022b8e5eca ${scanArgs}")
+			}
                     } //script
                 } // withCredentials
             } //steps
