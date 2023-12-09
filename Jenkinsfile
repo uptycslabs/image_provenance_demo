@@ -56,7 +56,8 @@ pipeline {
                             '--github-token ${GITHUB_TOKEN}',
 			    '--jenkins-token ${JENKINS_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
-                            '--approved-email-domain uptycs.com'
+                            '--approved-email-domain uptycs.com',
+                            '--config-file uptycs/.uptycs-ci.yml'
                         ].join(' ')
 			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
                         	sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
