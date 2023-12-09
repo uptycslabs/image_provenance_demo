@@ -19,9 +19,9 @@ pipeline {
                 script {
 		    sh (script: "set > uptycs-env.txt")
                     withCredentials([
-                            string(credentialsId: 'UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
-                            string(credentialsId: 'UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
-                            string(credentialsId: 'UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
+                            string(credentialsId: 'alphacentauri_UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
+                            string(credentialsId: 'alphacentauri_UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
+                            string(credentialsId: 'alphacentauri_UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
                             string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN'),
                             string(credentialsId: 'JENKINS_TOKEN', variable: 'JENKINS_TOKEN'),
 
