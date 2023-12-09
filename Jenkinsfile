@@ -35,7 +35,7 @@ pipeline {
 			"--env-file uptycs-env.txt",
                         "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
                         '--volume /var/run/docker.sock:/var/run/docker.sock:rw',
-                        '--volume /Users/usirsiwal/work/uptycs/testrepo/uptycs:/opt/uptycs/cloud',
+                        '--volume ${WORKSPACE}:/opt/uptycs/cloud',
                         '--env JOB_NAME="${JOB_NAME}"'
                         ].join(' ')
                         // scanner options 
