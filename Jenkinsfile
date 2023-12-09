@@ -45,12 +45,12 @@ pipeline {
                             '--disable-vulnerabilities',
                             '--disable-malware',
                             '--disable-image-scan',
-			    "--github-checks",
-                            "--jenkins-checks",
+			    '--github-checks',
+                            '--jenkins-checks',
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
                             //"--insecure",
-                            "--ci-runner-type jenkins",
+                            '--ci-runner-type jenkins',
                             '--api-key ${UPTYCS_API_KEY}',
                             '--api-secret ${UPTYCS_API_SECRET}',
                             '--github-token ${GITHUB_TOKEN}',
@@ -58,7 +58,6 @@ pipeline {
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com',
                             '--config-file uptycs/.uptycs-ci.yml',
-			    '--audit'
                         ].join(' ')
 			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
                         	sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
