@@ -59,7 +59,7 @@ pipeline {
                             '--approved-email-domain uptycs.com'
                         ].join(' ')
 			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
-                        	sh (script: "docker run ${scannerImageOpts} uptycs-ci:66d564c51c1bea6f9e5f81d6e6a6de022b8e5eca ${scanArgs}")
+                        	sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
 			}
                     } //script
                 } // withCredentials
