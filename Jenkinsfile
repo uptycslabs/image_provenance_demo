@@ -31,7 +31,7 @@ pipeline {
                         ]) {
                         // uptycs scanner and its parameters
                         def scannerImage = "267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:$params.CI_IMAGE_TAG"  
-			sh(script: "curl http://lagavulin-jenkins-master:8080/api/json --user ${JENKINS_TOKEN} -vvv")
+			sh(script: "curl http://lagavulin-jenkins-master.ouDefault-internal.uptycs.io:8080/api/json --user ${JENKINS_TOKEN} -vvv")
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--network host",
