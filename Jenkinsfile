@@ -27,7 +27,7 @@ pipeline {
 
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:66d564c51c1bea6f9e5f81d6e6a6de022b8e5eca'   
+                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:395f1d0433cef9795afef26475a02d4532f0ed51'   
 			
                         def scannerImageOpts = [
                         '--rm', '--restart no',
