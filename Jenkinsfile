@@ -9,7 +9,10 @@ pipeline {
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
+    parameters {
+        string(name: "CI_IMAGE_TAG", defaultValue: "latest", trim: true, description: "Uptycs CI Image tag")
 
+    }
     stages {
         stage("build") {
             steps {
@@ -27,7 +30,7 @@ pipeline {
 
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:1a1089cf6ecee6267338637b5a4469b2e9ccde8f'   
+                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:$params.CI_IMAGE_TAG'   
 			
                         def scannerImageOpts = [
                         '--rm', '--restart no',
