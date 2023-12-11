@@ -30,7 +30,7 @@ pipeline {
 
                         ]) {
                         // uptycs scanner and its parameters
-                        def scannerImage = '267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:$params.CI_IMAGE_TAG'   
+                        def scannerImage = "267292272963.dkr.ecr.us-east-1.amazonaws.com/uptycs/uptycs-ci:$params.CI_IMAGE_TAG"  
 			
                         def scannerImageOpts = [
                         '--rm', '--restart no',
