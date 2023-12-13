@@ -60,6 +60,7 @@ pipeline {
 			    '--jenkins-token ${JENKINS_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com',
+			    '--jenkins-url http://10.249.0.232:8080'
                             '--config-file uptycs/.uptycs-ci.yml',
                         ].join(' ')
 			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
