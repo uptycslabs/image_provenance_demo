@@ -13,9 +13,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "usirsiwal-uptycs-patch-3" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "usirsiwal-uptycs-patch-3" ]
+    branches: [ "main" ]
   schedule:
     - cron: '21 10 * * 6'
 
