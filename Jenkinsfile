@@ -68,5 +68,14 @@ pipeline {
                 } // withCredentials
             } //steps
         } //stage
+        stage('Docker push to jfrog') {
+            script {
+                withCredentials([usernamePassword(credentialsId: 'JFROG_CRED_FOR_ALPHA_CENT', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD')]) {
+                sh "docker login --username ${JFROG_USERNAME} --password ${JFROG_PASSWORD} uptycsk8s-docker-local.jfrog.io"
+                sh "docker tag test:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/test:${BUILD_ID}"
+                sh "docker push uptycsk8s-docker-local.jfrog.io/jfrog-test/test:${BUILD_ID}"
+                }
+            } //withCredentials
+        } //stage
     } //stages
 } // pipeline
