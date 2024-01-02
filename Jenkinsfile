@@ -49,6 +49,7 @@ pipeline {
                             '--disable-image-scan',
 			    '--github-checks',
                             '--jenkins-checks',
+			    '--fatal-cvss-score 11',	
 			    '--jenkins-url http://10.249.0.232:8080',
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
