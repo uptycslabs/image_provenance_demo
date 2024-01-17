@@ -1,4 +1,4 @@
 FROM ubuntu:latest
 WORKDIR /app
 COPY . .
-CMD ["sh -c", "sleep 10000"]
+CMD ["/bin/sh", "-c", "while true; do sleep 1000; done"]
