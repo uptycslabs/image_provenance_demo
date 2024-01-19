@@ -1,9 +1,11 @@
 package main
 
 import (
+	"crypto/tls"
 	"fmt"
-	"log"
 	"net/http"
+
+	"log"
 	"net/url"
 
 	_ "github.com/consensys/gnark"
@@ -44,6 +46,15 @@ func controller(msg string) {
 	}
 }
 
+func doAuthReq(authReq *http.Request) *http.Response {
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	res, _ := client.Do(authReq)
+	return res
+}
+
 type Timestamp int
 
 func (t Timestamp) addDays(d int) Timestamp {
@@ -57,6 +68,8 @@ func testTimestamp(t Timestamp) {
 }
 
 func main() {
+	req, _ := http.NewRequest("GET", "http://example.com", nil)
+	doAuthReq(req)
 	u := "/abc/def"
 	sanitizeUrl(u)
 	testTimestamp(1)
