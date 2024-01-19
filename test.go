@@ -1,12 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
 
 func sanitizeUrl(redir string) string {
 	if len(redir) > 0 && redir[0] == '/' {
 		return redir
 	}
 	return "/"
+}
+
+func serve() {
+	http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		user := r.Form.Get("user")
+		pw := r.Form.Get("password")
+
+		log.Printf("Registering new user %s with password %s.\n", user, pw)
+	})
+	http.ListenAndServe(":80", nil)
 }
 
 func controller(msg string) {
@@ -27,4 +42,5 @@ func main() {
 	controller("nope")
 	var p *int
 	fmt.Printf("%v\n", *p)
+	serve()
 }
