@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"crypto/tls"
+	"fmt"
+	"net/http"
+)
 
 func controller(msg string) {
 	switch {
@@ -14,10 +18,19 @@ func controller(msg string) {
 	}
 }
 
+func doAuthReq(authReq *http.Request) *http.Response {
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	res, _ := client.Do(authReq)
+	return res
+}
+
 func main() {
+	req, _ := http.NewRequest("GET", "http://example.com", nil)
+	doAuthReq(req)
 	controller("nope")
 	var p *int
 	fmt.Printf("%v\n", *p)
 }
-
-
