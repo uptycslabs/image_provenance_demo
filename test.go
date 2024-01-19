@@ -4,13 +4,19 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 )
 
 func sanitizeUrl(redir string) string {
 	if len(redir) > 0 && redir[0] == '/' {
 		return redir
 	}
-	return "/"
+	u, err := url.Parse(redir)
+	if err != nil || u.Scheme == "javascript" {
+		return "about:blank"
+	}
+	return redir
+
 }
 
 func serve() {
