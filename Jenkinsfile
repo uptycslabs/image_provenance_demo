@@ -43,10 +43,6 @@ pipeline {
                         // scanner options 
                         def scanArgs = [
                             "scan",
-                            '--disable-secrets',
-                            '--disable-vulnerabilities',
-                            '--disable-malware',
-                            '--disable-image-scan',
 			    '--github-checks',
                             '--jenkins-checks',
 			    '--fatal-cvss-score 11',	
