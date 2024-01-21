@@ -34,7 +34,7 @@ pipeline {
                         def scannerImageOpts = [
                         '--rm', '--restart no',
                         "--network host",
-			"--env-file uptycs-env.txt",
+			            '--env-file uptycs-env.txt',
                         "--env RUN_DISPLAY_URL=${RUN_DISPLAY_URL}",
                         '--volume /var/run/docker.sock:/var/run/docker.sock:rw',
                         '--volume ${WORKSPACE}:/opt/uptycs/cloud',
@@ -43,10 +43,10 @@ pipeline {
                         // scanner options 
                         def scanArgs = [
                             "scan",
-			    '--github-checks',
+			                '--github-checks',
                             '--jenkins-checks',
-			    '--fatal-cvss-score 11',	
-			    '--jenkins-url http://10.249.0.232:8080',
+			                '--fatal-cvss-score 11',	
+			                '--jenkins-url http://10.249.0.232:8080',
                             '--jenkins-token ${JENKINS_TOKEN}',
                             "--image-id 'test:${BUILD_ID}'",
                             //"--insecure",
@@ -57,6 +57,7 @@ pipeline {
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com',
                             '--config-file uptycs/.uptycs-ci.yml',
+                            '--audit=true',
                         ].join(' ')
 			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
                         	sh (script: "docker run ${scannerImageOpts} ${scannerImage} ${scanArgs}")
