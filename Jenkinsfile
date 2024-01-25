@@ -11,7 +11,7 @@ pipeline {
     }
     parameters {
         string(name: "CI_IMAGE_TAG", defaultValue: "latest", trim: true, description: "Uptycs CI Image tag")
-
+        string(name: "STACK_NAME", defaultValue: "alphacentauri", trim: true, description: "Stack name")
     }
     stages {
         stage("build") {
@@ -21,8 +21,8 @@ pipeline {
             
                 script {
 		    sh (script: "set > uptycs-env.txt")
-                    def stack = 'alphacentauri'
                     withCredentials([
+                            def stack = $params.STACK_NAME
                             string(credentialsId: stack + '_UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
                             string(credentialsId: stack + '_UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
                             string(credentialsId: stack + '_UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
