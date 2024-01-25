@@ -21,8 +21,8 @@ pipeline {
             
                 script {
 		    sh (script: "set > uptycs-env.txt")
+                    def stack = $params.STACK_NAME
                     withCredentials([
-                            def stack = $params.STACK_NAME
                             string(credentialsId: stack + '_UPTYCS_CI_SECRET', variable: 'UPTYCS_CI_SECRET'),
                             string(credentialsId: stack + '_UPTYCS_API_KEY', variable: 'UPTYCS_API_KEY'),
                             string(credentialsId: stack + '_UPTYCS_API_SECRET', variable: 'UPTYCS_API_SECRET'),
