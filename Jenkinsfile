@@ -57,7 +57,7 @@ pipeline {
                             '--github-token ${GITHUB_TOKEN}',
                             '--uptycs-secret ${UPTYCS_CI_SECRET}',
                             '--approved-email-domain uptycs.com',
-                            '--config-file uptycs/.uptycs-ci.yml',
+                            "--config-file=uptycs/${params.STACK_NAME}.yml",
                             '--audit=true',
                         ].join(' ')
 			docker.withRegistry('https://267292272963.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:uptycs-shared-jenkins') {
