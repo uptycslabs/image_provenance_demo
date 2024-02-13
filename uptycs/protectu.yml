@@ -1,0 +1,17 @@
+# General Configuration Options
+ci_runner: jenkins
+hostname: protectu.uptycs.io
+verbose: false
+customer_id: 5b06acae-7218-49af-876a-4c12fd0d5bae
+
+# Configure vulnerability scanning.
+vulnerabilities:
+    fatal_cvss_score: 7  # Configure the maximum allowable CVSS score.
+    ignore_no_fix: false # Ignore any detected vulnerabilities for which there are no known fixes.
+    ignore_packages: []  # A list of packages to ignore any detected vulnerabilities in.
+    grace_period: 7d     # Configure a grace period for newly detected vulns
+
+# Configure secrets scanning.
+secrets:
+    paths:         # Configure paths to scan for secrets.
+        - /%%
