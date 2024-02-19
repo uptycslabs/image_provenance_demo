@@ -70,7 +70,7 @@ func testTimestamp(t Timestamp) {
 func main() {
 	req, _ := http.NewRequest("GET", "http://example.com", nil)
 	doAuthReq(req)
-	u := "/abc/def/ghi"
+	u := "/abc/"
 	sanitizeUrl(u)
 	testTimestamp(1)
 	controller("nope")
