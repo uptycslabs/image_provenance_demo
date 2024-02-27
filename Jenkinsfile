@@ -67,6 +67,8 @@ pipeline {
                 } // script
             } //steps
         } //stage
+
+        
         stage('Docker push to jfrog') {
                 steps {
                     script {
@@ -78,5 +80,22 @@ pipeline {
                         } //script
                 } // steps
             } //stage
+        
+        stage('sign') {
+            steps {
+                script{
+                    sh 'curl -O -L https://github.com/sigstore/cosign/releases/latest/download/cosign_2.2.3_amd64.deb'
+                    sh 'sudo dpkg -i cosign_2.2.3_amd64.deb'
+                    withCredentials([
+                        usernamePassword(credentialsId: 'JFROG_CRED_FOR_ALPHA_CENT', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD'),
+                        file(credentialsId: 'COSIGN_KEY', variable: 'COSIGN_KEY'),
+                    ]) {
+                        sh "docker login --username ${JFROG_USERNAME} --password ${JFROG_PASSWORD} uptycsk8s-docker-local.jfrog.io"
+                        sh "docker tag image_provenance_demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/image_provenance_demo:${BUILD_ID}"
+                        sh 'COSIGN_PASSWORD="" cosign sign --key ${COSIGN_KEY} -y uptycsk8s-docker-local.jfrog.io/jfrog-test/image_provenance_demo:${BUILD_ID}'
+                    }
+                    }
+                }
+            }
         } //stages
     } // pipeline
