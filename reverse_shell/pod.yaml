@@ -11,6 +11,6 @@ spec:
   automountServiceAccountToken: false
   containers:
   - name: scdemo-apiserver-demo
-    image: uptycsk8s-docker-local.jfrog.io/jfrog-test/apiserver-demo:97
+    image: uptycsk8s-docker-local.jfrog.io/jfrog-test/apiserver-demo:110
     securityContext:
       allowPrivilegeEscalation: false

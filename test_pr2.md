@@ -10,3 +10,4 @@ Test commit #3
 
 Introduce memleak.
 
+Testing signed commits.
