@@ -2,8 +2,10 @@ package main
 
 import (
 	"crypto/tls"
+	"flag"
 	"fmt"
 	"net/http"
+	"time"
 
 	"log"
 	"net/url"
@@ -65,6 +67,10 @@ func (t Timestamp) addHours(d int) Timestamp {
 	return Timestamp(int(t) + d*3600)
 }
 
+func (t Timestamp) Wait(d time.Duration) {
+	time.Sleep(d)
+}
+
 func testTimestamp(t Timestamp) {
 	fmt.Printf("Before: %v\n", t)
 	_ = t.addDays(7)
@@ -72,7 +78,10 @@ func testTimestamp(t Timestamp) {
 }
 
 func main() {
-	req, _ := http.NewRequest("GET", "http://example.com", nil)
+	var server string
+	flag.String(server, "http://example.com", "help message for flag n")
+	flag.Parse()
+	req, _ := http.NewRequest("GET", server, nil)
 	doAuthReq(req)
 	u := "/abc/efg/"
 	sanitizeUrl(u)
