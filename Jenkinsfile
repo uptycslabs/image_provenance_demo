@@ -70,7 +70,7 @@ pipeline {
         stage("build-rs") {
             steps {
                 echo 'BUILD image STARTED'
-                sh 'cd reverse_shell && docker build --tag apiserver-demo:${BUILD_ID} . '
+                sh 'cd ng && docker build --tag apiserver-demo:${BUILD_ID} . '
             
                 script {
 		            sh (script: "set > uptycs-env.txt")
