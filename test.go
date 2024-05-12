@@ -61,10 +61,14 @@ func (t Timestamp) addDays(d int) Timestamp {
 	return Timestamp(int(t) + d*24*3600)
 }
 
+func (t Timestamp) addHours(d int) Timestamp {
+	return Timestamp(int(t) + d*3600)
+}
+
 func testTimestamp(t Timestamp) {
-	fmt.Printf("Before: %s\n", t)
-	t.addDays(7)
-	fmt.Printf("After: %s\n", t)
+	fmt.Printf("Before: %v\n", t)
+	_ = t.addDays(7)
+	fmt.Printf("After: %v\n", t)
 }
 
 func main() {
