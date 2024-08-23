@@ -141,7 +141,7 @@ pipeline {
         stage('sign') {
             steps {
                 script{
-                    sh 'curl -O -L https://github.com/sigstore/cosign/releases/latest/download/cosign_2.2.4_amd64.deb'
+                    sh 'curl -O -L https://github.com/sigstore/cosign/releases/download/v2.2.4/cosign_2.2.4_amd64.deb'
                     sh 'sudo dpkg -i cosign_2.2.4_amd64.deb'
                     withCredentials([
                         usernamePassword(credentialsId: 'JFROG_CRED_FOR_ALPHA_CENT', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD'),
