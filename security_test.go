@@ -23,3 +23,19 @@ func TestAuditAddress(t *testing.T) {
 	assert.NoError(t, s.auditAddress(u))
 
 }
+
+func TestNegativeUserName(t *testing.T) {
+	s := NewSecurityAudit()
+	u := &User{
+		Name: []rune("1John"),
+	}
+	assert.Error(t, s.auditUserName(u), "username does not start with letter")
+}
+
+func TestNegativeAddress(t *testing.T) {
+	s := NewSecurityAudit()
+	u := &User{
+		Name: []rune("1-John-Street"),
+	}
+	assert.Error(t, s.auditAddress(u), "address does not start with letter")
+}
