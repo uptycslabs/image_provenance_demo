@@ -43,7 +43,7 @@ func (s *SecurityAudit) auditAddress(u *User) error {
 	if unicode.IsLetter(u.Name[0]) {
 		return nil
 	}
-	return fmt.Errorf("username does not start with letter")
+	return fmt.Errorf("address does not start with letter")
 }
 
 func (s *SecurityAudit) auditEmail(e string) bool {
