@@ -39,3 +39,20 @@ func TestNegativeAddress(t *testing.T) {
 	}
 	assert.Error(t, s.auditAddress(u), "address does not start with letter")
 }
+func TestAuditEmail(t *testing.T) {
+	s := NewSecurityAudit()
+	u := &User{
+		Email: "abc@abc.com",
+	}
+	f := s.auditEmail(u.Email)
+	assert.Equal(t, f, true)
+}
+
+func TestNegativeAuditEmail(t *testing.T) {
+	s := NewSecurityAudit()
+	u := &User{
+		Email: "abc.com",
+	}
+	f := s.auditEmail(u.Email)
+	assert.Equal(t, f, false)
+}
