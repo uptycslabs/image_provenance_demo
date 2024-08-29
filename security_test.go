@@ -23,3 +23,21 @@ func TestAuditAddress(t *testing.T) {
 	assert.NoError(t, s.auditAddress(u))
 
 }
+
+func TestAuditEmail(t *testing.T) {
+	s := NewSecurityAudit()
+	u := &User{
+		Email: "abc@abc.com",
+	}
+	f := s.auditEmail(u.Email)
+	assert.Equal(t, f, true)
+}
+
+func TestNegativeAuditEmail(t *testing.T) {
+	s := NewSecurityAudit()
+	u := &User{
+		Email: "abc.com",
+	}
+	f := s.auditEmail(u.Email)
+	assert.Equal(t, f, false)
+}
