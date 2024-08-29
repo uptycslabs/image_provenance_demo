@@ -17,7 +17,7 @@ pipeline {
         stage("build") {
             steps {
                 echo 'BUILD image STARTED'
-                sh 'docker build --tag image_provenance_demo:${BUILD_ID} . '
+                sh 'docker build --tag uptycslab-image_provenance_demo:${BUILD_ID} . '
             
                 script {
 		    sh (script: "set > uptycs-env.txt")
@@ -49,7 +49,7 @@ pipeline {
 			                '--fatal-cvss-score 11',	
 			                '--jenkins-url http://10.249.0.232:8080',
                             '--jenkins-token ${JENKINS_TOKEN}',
-                            "--image-id 'image_provenance_demo:${BUILD_ID}'",
+                            "--image-id 'uptycslab-image_provenance_demo:${BUILD_ID}'",
                             //"--insecure",
                             '--ci-runner-type jenkins',
                             '--api-key ${UPTYCS_API_KEY}',
@@ -127,8 +127,8 @@ pipeline {
                     script {
                         withCredentials([usernamePassword(credentialsId: 'JFROG_CRED_FOR_ALPHA_CENT', usernameVariable: 'JFROG_USERNAME', passwordVariable: 'JFROG_PASSWORD')]) {
                             sh "docker login --username ${JFROG_USERNAME} --password ${JFROG_PASSWORD} uptycsk8s-docker-local.jfrog.io"
-                            sh "docker tag image_provenance_demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/image_provenance_demo:${BUILD_ID}"
-                            sh "docker push uptycsk8s-docker-local.jfrog.io/jfrog-test/image_provenance_demo:${BUILD_ID}"
+                            sh "docker tag uptycslab-image_provenance_demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-image_provenance_demo:${BUILD_ID}"
+                            sh "docker push uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-image_provenance_demo:${BUILD_ID}"
 
                             sh "docker tag uptycslab-apiserver-demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-apiserver-demo:${BUILD_ID}"
                             sh "docker push uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-apiserver-demo:${BUILD_ID}"
@@ -148,8 +148,8 @@ pipeline {
                         file(credentialsId: 'COSIGN_KEY', variable: 'COSIGN_KEY'),
                     ]) {
                         sh "docker login --username ${JFROG_USERNAME} --password ${JFROG_PASSWORD} uptycsk8s-docker-local.jfrog.io"
-                        sh "docker tag image_provenance_demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/image_provenance_demo:${BUILD_ID}"
-                        sh 'COSIGN_PASSWORD="" cosign sign --key ${COSIGN_KEY} -y uptycsk8s-docker-local.jfrog.io/jfrog-test/image_provenance_demo:${BUILD_ID}'
+                        sh "docker tag uptycslab-image_provenance_demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-image_provenance_demo:${BUILD_ID}"
+                        sh 'COSIGN_PASSWORD="" cosign sign --key ${COSIGN_KEY} -y uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-image_provenance_demo:${BUILD_ID}'
 
                         sh "docker tag uptycslab-apiserver-demo:${BUILD_ID} uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-apiserver-demo:${BUILD_ID}"
                         sh 'COSIGN_PASSWORD="" cosign sign --key ${COSIGN_KEY} -y uptycsk8s-docker-local.jfrog.io/jfrog-test/uptycslab-apiserver-demo:${BUILD_ID}'
